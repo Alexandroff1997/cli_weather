@@ -2,13 +2,18 @@ import { homedir } from 'os';
 import { join } from 'path';
 import { promises } from 'fs';
 
+const TOKEN_ENUM = {
+	token: 'token',
+	city: 'city',
+};
+
 const filePath = join(homedir(), 'weather-data.json');
 
 const readFileFunc = async () => {
 	const file = await promises.readFile(filePath);
 
 	return JSON.parse(file)
-}
+};
  
 const saveKeyValue = async (key, value) => {
 	let data = {};
@@ -30,7 +35,7 @@ const getKeyValue = async (key) => {
 	}
 	
 	return null;
-}
+};
 
 const isExist = async (path) => {
 	try {
@@ -39,9 +44,10 @@ const isExist = async (path) => {
 	} catch (err) {
 		return false;
 	}
-}
+};
 
 export { 
 	saveKeyValue,
-	getKeyValue, 
-}
+	getKeyValue,
+	TOKEN_ENUM, 
+};

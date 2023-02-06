@@ -1,6 +1,7 @@
 import { getArgs } from './helpers/args.js';
+import { getWeather } from './services/api.service.js';
 import { printError, prinSuccess, printHelp } from './services/log.service.js';
-import { saveKeyValue } from './services/storage.service.js';
+import { saveKeyValue, TOKEN_ENUM } from './services/storage.service.js';
 
 const saveToken = async (token) => {
 	if (!token.length) {
@@ -8,7 +9,7 @@ const saveToken = async (token) => {
 		return;
 	}
 	try {
-		await saveKeyValue('token', token);
+		await saveKeyValue(TOKEN_ENUM.token, token);
 		prinSuccess('Токен сохранен');
 	} catch (err) {
 		printError(err.message);
@@ -29,6 +30,7 @@ const startCli = () => {
 	if (args.t) {
 		return saveToken(args.t);
 	}
+	getWeather('moscow');
 };
 
 startCli();

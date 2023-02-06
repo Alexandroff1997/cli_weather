@@ -15,8 +15,8 @@ const getArgs = (args) => {
 	});
 
 	return result;
-}
+};
 
 export {
 	getArgs,
-}
+};
